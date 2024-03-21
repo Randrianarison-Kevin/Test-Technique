@@ -39,6 +39,7 @@ class ImportController extends AbstractController
 
                     // Traitement du fichier excel
                     $spreadsheet = IOFactory::load($this->getParameter('uploadFile_directory').'/'.$newFilename);
+                    $sheetData = $spreadsheet->getActiveSheet()->removeRow(1);
                     $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
                     foreach ($sheetData as $row) {
                         $entity = new Test();
@@ -74,17 +75,17 @@ class ImportController extends AbstractController
                         $dateA = \DateTime::createFromFormat('d/m/Y', $dateAchat);
                         if ($dateA === false) {
                             $this->addFlash('error', "La date '$dateAchat' n'est pas valide.");
-                            $entity->setDateDeMiseEnCirculation(null);
+                            $entity->setDateAchat(null);
                         } else {
-                            $entity->setDateDeMiseEnCirculation($dateA);
+                            $entity->setDateAchat($dateA);
                         }
                         $DateDernierEvenement = $row['S'];
                         $dateD = \DateTime::createFromFormat('d/m/Y', $DateDernierEvenement);
                         if ($dateD === false) {
                             $this->addFlash('error', "La date '$DateDernierEvenement' n'est pas valide.");
-                            $entity->setDateDeMiseEnCirculation(null);
+                            $entity->setDateDernierEvenement(null);
                         } else {
-                            $entity->setDateDeMiseEnCirculation($dateD);
+                            $entity->setDateDernierEvenement($dateD);
                         }
                        
                         $entity->setLibelleMarque($row['T']);
@@ -106,9 +107,9 @@ class ImportController extends AbstractController
                         $dateDE = \DateTime::createFromFormat('d/m/Y', $setDateEvenement);
                         if ($dateDE === false) {
                             $this->addFlash('error', "La date '$setDateEvenement' n'est pas valide.");
-                            $entity->setDateDeMiseEnCirculation(null);
+                            $entity->setDateEvenement(null);
                         } else {
-                            $entity->setDateDeMiseEnCirculation($dateDE);
+                            $entity->setDateEvenement($dateDE);
                         }
                         $entity->setOrigineEvenement($row['AI']);
                         

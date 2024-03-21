@@ -63,8 +63,8 @@
                 <td>{{ test.TelephoneJob }}</td>
                 <td>{{ test.Email }}</td>
                 <td>{{ test.DateDeMiseEnCirculation|date('d/m/Y') }}</td>
-                <td>{{ test.DateAchat }}</td>
-                <td>{{ test.DateDernierEvenement }}</td>
+                <td>{{ test.DateAchat|date('d/m/Y') }}</td>
+                <td>{{ test.DateDernierEvenement|date('d/m/Y') }}</td>
                 <td>{{ test.LibelleMarque }}</td>
                 <td>{{ test.LibelleModele }}</td>
                 <td>{{ test.Version }}</td>
@@ -79,7 +79,7 @@
                 <td>{{ test.TypeVNVO }}</td>
                 <td>{{ test.NumeroDeDossierVNVO }}</td>
                 <td>{{ test.IntermediaireDeVenteVN }}</td>
-                <td>{{ test.DateEvenement }}</td>
+                <td>{{ test.DateEvenement|date('d/m/Y') }}</td>
                 <td>{{ test.OrigineEvenement }}</td>
             </tr>
         {% endfor %}

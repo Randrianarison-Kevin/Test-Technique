@@ -19,4 +19,5 @@ class AfficheController extends AbstractController
             'tests' => $test,
         ]);
     }
+
 }
