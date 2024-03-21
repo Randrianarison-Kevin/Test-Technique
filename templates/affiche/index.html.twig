@@ -81,6 +81,9 @@
                 <td>{{ test.IntermediaireDeVenteVN }}</td>
                 <td>{{ test.DateEvenement|date('d/m/Y') }}</td>
                 <td>{{ test.OrigineEvenement }}</td>
+                <td>
+                    <a href="{{ path('supprimer', {'id': test.id}) }}" class="delete-btn">Supprimer</a>
+                </td>
             </tr>
         {% endfor %}
     </tbody>

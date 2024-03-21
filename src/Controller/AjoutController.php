@@ -26,4 +26,18 @@ class AjoutController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route("/supprimer/{id}", name : "supprimer" )]
+    public function supprimer($id, EntityManagerInterface $entityManager)
+    {
+        $repository = $entityManager->getRepository(Test::class);
+        $supprimer = $repository ->find($id);
+        if ($supprimer) {
+            $entityManager->remove($supprimer);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('app_affiche');
+    }
+
+
 }
