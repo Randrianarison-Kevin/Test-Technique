@@ -39,5 +39,21 @@ class AjoutController extends AbstractController
         return $this->redirectToRoute('app_affiche');
     }
 
+    #[Route("/editer/{id}", name:"editer")]
+    public function editer(EntityManagerInterface $entityManager, $id, Request $request)  
+    {
+        $repository = $entityManager->getRepository(Test::class);
+        $entite = $repository->find($id);
+        $form = $this->createForm(AjoutFormType::class, $entite);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            return $this->redirectToRoute('app_affiche');
+        }
+        return $this->render('edit/index.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
 
 }
