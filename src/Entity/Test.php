@@ -2,28 +2,28 @@
 
 namespace App\Entity;
 
-use App\Repository\TestTechniqueRepository;
+use App\Repository\TestRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: TestTechniqueRepository::class)]
-class TestTechnique
+#[ORM\Entity(repositoryClass: TestRepository::class)]
+class Test
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $CompteAffaire = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $CompteEvenement = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $CompteDernierEvenement = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $NumeroFiche = null;
 
     #[ORM\Column(length: 20, nullable: true)]
@@ -32,7 +32,7 @@ class TestTechnique
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $ProprietaireActuelDuVehicule = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $Nom = null;
 
     #[ORM\Column(length: 100, nullable: true)]
@@ -44,10 +44,10 @@ class TestTechnique
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $ComplementAdresse1 = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $CodePostal = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $Ville = null;
 
     #[ORM\Column(nullable: true)]
@@ -68,10 +68,10 @@ class TestTechnique
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateAchat = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateDernierEvenement = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $LibelleMarque = null;
 
     #[ORM\Column(length: 100, nullable: true)]
@@ -80,13 +80,13 @@ class TestTechnique
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Version = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $VIN = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Immatriculation = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $TypeDeProspect = null;
 
     #[ORM\Column(nullable: true)]
@@ -113,10 +113,10 @@ class TestTechnique
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $IntermediaireDeVenteVN = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $DateEvenement = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $OrigineEvenement = null;
 
     public function getId(): ?int
@@ -129,7 +129,7 @@ class TestTechnique
         return $this->CompteAffaire;
     }
 
-    public function setCompteAffaire(string $CompteAffaire): static
+    public function setCompteAffaire(?string $CompteAffaire): static
     {
         $this->CompteAffaire = $CompteAffaire;
 
@@ -141,7 +141,7 @@ class TestTechnique
         return $this->CompteEvenement;
     }
 
-    public function setCompteEvenement(string $CompteEvenement): static
+    public function setCompteEvenement(?string $CompteEvenement): static
     {
         $this->CompteEvenement = $CompteEvenement;
 
@@ -153,7 +153,7 @@ class TestTechnique
         return $this->CompteDernierEvenement;
     }
 
-    public function setCompteDernierEvenement(string $CompteDernierEvenement): static
+    public function setCompteDernierEvenement(?string $CompteDernierEvenement): static
     {
         $this->CompteDernierEvenement = $CompteDernierEvenement;
 
@@ -165,7 +165,7 @@ class TestTechnique
         return $this->NumeroFiche;
     }
 
-    public function setNumeroFiche(int $NumeroFiche): static
+    public function setNumeroFiche(?int $NumeroFiche): static
     {
         $this->NumeroFiche = $NumeroFiche;
 
@@ -201,7 +201,7 @@ class TestTechnique
         return $this->Nom;
     }
 
-    public function setNom(string $Nom): static
+    public function setNom(?string $Nom): static
     {
         $this->Nom = $Nom;
 
@@ -249,7 +249,7 @@ class TestTechnique
         return $this->CodePostal;
     }
 
-    public function setCodePostal(int $CodePostal): static
+    public function setCodePostal(?int $CodePostal): static
     {
         $this->CodePostal = $CodePostal;
 
@@ -261,7 +261,7 @@ class TestTechnique
         return $this->Ville;
     }
 
-    public function setVille(string $Ville): static
+    public function setVille(?string $Ville): static
     {
         $this->Ville = $Ville;
 
@@ -345,7 +345,7 @@ class TestTechnique
         return $this->DateDernierEvenement;
     }
 
-    public function setDateDernierEvenement(\DateTimeInterface $DateDernierEvenement): static
+    public function setDateDernierEvenement(?\DateTimeInterface $DateDernierEvenement): static
     {
         $this->DateDernierEvenement = $DateDernierEvenement;
 
@@ -357,7 +357,7 @@ class TestTechnique
         return $this->LibelleMarque;
     }
 
-    public function setLibelleMarque(string $LibelleMarque): static
+    public function setLibelleMarque(?string $LibelleMarque): static
     {
         $this->LibelleMarque = $LibelleMarque;
 
@@ -393,7 +393,7 @@ class TestTechnique
         return $this->VIN;
     }
 
-    public function setVIN(string $VIN): static
+    public function setVIN(?string $VIN): static
     {
         $this->VIN = $VIN;
 
@@ -417,7 +417,7 @@ class TestTechnique
         return $this->TypeDeProspect;
     }
 
-    public function setTypeDeProspect(string $TypeDeProspect): static
+    public function setTypeDeProspect(?string $TypeDeProspect): static
     {
         $this->TypeDeProspect = $TypeDeProspect;
 
@@ -525,7 +525,7 @@ class TestTechnique
         return $this->DateEvenement;
     }
 
-    public function setDateEvenement(\DateTimeInterface $DateEvenement): static
+    public function setDateEvenement(?\DateTimeInterface $DateEvenement): static
     {
         $this->DateEvenement = $DateEvenement;
 
@@ -537,7 +537,7 @@ class TestTechnique
         return $this->OrigineEvenement;
     }
 
-    public function setOrigineEvenement(string $OrigineEvenement): static
+    public function setOrigineEvenement(?string $OrigineEvenement): static
     {
         $this->OrigineEvenement = $OrigineEvenement;
 
