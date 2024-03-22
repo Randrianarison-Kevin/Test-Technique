@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AfficheController!{% endblock %}
+
+{% block body %}
+<div style=" margin:5%;">
+    <table class="table-datatable cell-border">
+        <thead>
+            <tr>
+                <th>Numero</th>
+                <th>Compte Affaire</th>
+                <th>Compte Événement</th>
+                <th>Compte Dernier Evenement</th>
+                <th>Numero Fiche</th>
+                <th>Libelle Civilite</th>
+                <th>Proprietaire Actuel Du Vehicule</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Numero Et Nom De La Voie</th>
+                <th>Complement Adresse 1</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Telephone Domicile</th>
+                <th>Telephone Portable</th>
+                <th>Telephone Job</th>
+                <th>Email</th>
+                <th>Date De Mise En Circulation</th>
+                <th>Date Achat</th>
+                <th>Date Dernier Evenement</th>
+                <th>Libelle Marque</th>
+                <th>Libelle Modele</th>
+                <th>Version</th>
+                <th>VIN</th>
+                <th>Immatriculation</th>
+                <th>Type De Prospect</th>
+                <th>Kilometrage</th>
+                <th>Libelle Energie</th>
+                <th>VendeurVN</th>
+                <th>VendeurVO</th>
+                <th>Commentaire De Facturation</th>
+                <th>TypeVNVO</th>
+                <th>Numero De Dossier VNVO</th>
+                <th>Intermediaire De Vente VN</th>
+                <th>Date Evenement</th>
+                <th>Origine Evenement</th>
+                <th >Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for test in tests %}
+                <tr>
+                    <td>{{ test.id }}</td>
+                    <td>{{ test.CompteAffaire }}</td>
+                    <td>{{ test.CompteEvenement }}</td>
+                    <td>{{ test.CompteDernierEvenement }}</td>
+                    <td>{{ test.NumeroFiche }}</td>
+                    <td>{{ test.LibelleCivilite }}</td>
+                    <td>{{ test.ProprietaireActuelDuVehicule }}</td>
+                    <td>{{ test.Nom }}</td>
+                    <td>{{ test.Prenom }}</td>
+                    <td>{{ test.NumeroEtNomDeLaVoie }}</td>
+                    <td>{{ test.ComplementAdresse1 }}</td>
+                    <td>{{ test.CodePostal }}</td>
+                    <td>{{ test.Ville }}</td>
+                    <td>{{ test.TelephoneDomicile }}</td>
+                    <td>{{ test.TelephonePortable }}</td>
+                    <td>{{ test.TelephoneJob }}</td>
+                    <td>{{ test.Email }}</td>
+                    <td>{{ test.DateDeMiseEnCirculation|date('d/m/Y') }}</td>
+                    <td>{{ test.DateAchat|date('d/m/Y') }}</td>
+                    <td>{{ test.DateDernierEvenement|date('d/m/Y') }}</td>
+                    <td>{{ test.LibelleMarque }}</td>
+                    <td>{{ test.LibelleModele }}</td>
+                    <td>{{ test.Version }}</td>
+                    <td>{{ test.VIN }}</td>
+                    <td>{{ test.Immatriculation }}</td>
+                    <td>{{ test.TypeDeProspect }}</td>
+                    <td>{{ test.Kilometrage }}</td>
+                    <td>{{ test.LibelleEnergie }}</td>
+                    <td>{{ test.VendeurVN }}</td>
+                    <td>{{ test.VendeurVO }}</td>
+                    <td>{{ test.CommentaireDeFacturation }}</td>
+                    <td>{{ test.TypeVNVO }}</td>
+                    <td>{{ test.NumeroDeDossierVNVO }}</td>
+                    <td>{{ test.IntermediaireDeVenteVN }}</td>
+                    <td>{{ test.DateEvenement|date('d/m/Y') }}</td>
+                    <td>{{ test.OrigineEvenement }}</td>
+                    <td class="table-buttons" >
+                        <a href="{{ path('editer', {'id': test.id}) }}" class="editer" >Éditer</a>
+                        <a href="{{ path('supprimer', {'id': test.id}) }}" class="supprimer">Supprimer</a>
+                        <style>
+                        /* Style général des boutons */
+                            .table-buttons a {
+                                display: inline-block;
+                                padding: 5px 10px;
+                                margin: 2px;
+                                border: 1px solid #ccc;
+                                border-radius: 4px;
+                                text-decoration: none;
+                                color: white;
+                                background-color: #454545;
+                                font-weight: bold;
+                                text-align: center;
+                            }
+
+                            
+                            /* Changement de style au survol */
+                            .table-buttons a:hover {
+                                opacity: 0.8;
+                            }
+
+                        </style>
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
