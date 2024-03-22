@@ -29,6 +29,10 @@
         {% endblock %}
     </head>
     <body>
+        <div class="navbar">
+            <a href="{{ path('app_import') }}">Import</a>
+            <a  href="{{ path('app_affiche') }}">Affiche</a>
+        </div>
         {% block body %}{% endblock %}
     </body>
 </html>

@@ -15,26 +15,26 @@ class UploadFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('ExcelFile', FileType::class,[
-                'label' => 'importer le fichier',
+            ->add('ExcelFile', FileType::class, [
+                'label' => 'Importer le fichier',
                 'mapped' => false,
                 'required' => false,
-                
+                'attr' => ['class' => 'form-control'],
                 'constraints' => [
-                new File([
-                    'maxSize' => '1024k',
-                    'mimeTypes' => [
-                        'application/vnd.ms-excel',
-                        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                    ],
-                    'mimeTypesMessage' => 'Please upload a valid Excel document',
-                ])
-            ]
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/vnd.ms-excel',
+                            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez télécharger un document Excel valide',
+                    ])
+                ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Soumettre'
-            ])
-        ;
+                'label' => 'Soumettre',
+                'attr' => ['class' => 'btn btn-primary']
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
