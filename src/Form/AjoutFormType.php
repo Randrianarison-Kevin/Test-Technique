@@ -12,6 +12,7 @@ class AjoutFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        //constructeur de formulaire ajoute des champs
         $builder
             ->add('CompteAffaire')
             ->add('CompteEvenement')

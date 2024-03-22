@@ -21,12 +21,16 @@ class ImportController extends AbstractController
     public function index(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
     {
         $uploadFile = new UploadFile();
+
+        //Creation de formulaire
         $form = $this->createForm(UploadFormType::class, $uploadFile);
         $form->handleRequest($request);
+
+        //Verification de la formulaire
         if ($form->isSubmitted() && $form->isValid()) 
         {
+            //Recuperation et traitement du fichier
             $File = $form->get('ExcelFile')->getData();
-
             if ($File) {
                 $originalFilename = pathinfo($File->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($originalFilename);
@@ -42,12 +46,13 @@ class ImportController extends AbstractController
                     $spreadsheet = IOFactory::load($this->getParameter('uploadFile_directory').'/'.$newFilename);
                     $sheetData = $spreadsheet->getActiveSheet()->removeRow(1);
                     $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+                    //Traitement de chaque ligne
                     foreach ($sheetData as $row) {
                         $entity = new Test();
                         $entity->setCompteAffaire($row['A']);
-                        $compteEvenement = $row['B']; // Remplacez 'ColonneCorrespondante' par la lettre de la colonne Excel appropriée
+                        $compteEvenement = $row['B'];
                         if ($compteEvenement === null) {
-                            $compteEvenement = ''; // Définissez une chaîne vide ou une autre valeur par défaut
+                            $compteEvenement = ''; 
                         }
                         $entity->setCompteEvenement($compteEvenement);
                         $entity->setCompteDernierEvenement($row['C']);
@@ -119,16 +124,20 @@ class ImportController extends AbstractController
                     }
                     $entityManager->flush();
 
-
+                    
+                    
                 } catch (FileException $e) {
                     $this->addFlash('error', 'Une erreur s\'est produite lors du téléchargement du fichier.');
                 }
                 
 
                 $uploadFile->setExcelFile($newFilename);
+               
             }
-
-            
+            $this->addFlash(
+                'success',
+                'Le fichier a été soumis avec succès !'
+            );
             
         }
         return $this->render('import/index.html.twig', [

@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class AjoutController extends AbstractController
+class CrudController extends AbstractController
 {
     #[Route('/ajout', name: 'app_ajout')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
@@ -18,6 +18,8 @@ class AjoutController extends AbstractController
         $ajout = new Test();
         $form = $this->createForm(AjoutFormType::class, $ajout);
         $form->handleRequest($request);
+
+        //Verification du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($ajout);
             $entityManager->flush();
@@ -32,6 +34,8 @@ class AjoutController extends AbstractController
     {
         $repository = $entityManager->getRepository(Test::class);
         $supprimer = $repository ->find($id);
+
+        //Si l'entite est trouvée, elle est supprimer
         if ($supprimer) {
             $entityManager->remove($supprimer);
             $entityManager->flush();

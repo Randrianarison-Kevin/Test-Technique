@@ -15,6 +15,7 @@ class UploadFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        // Ajout du champ de téléchargement de fichier Excel
             ->add('ExcelFile', FileType::class, [
                 'label' => 'Importer le fichier',
                 'mapped' => false,
@@ -31,6 +32,7 @@ class UploadFormType extends AbstractType
                     ])
                 ]
             ])
+            // Ajout du bouton de soumission
             ->add('submit', SubmitType::class, [
                 'label' => 'Soumettre',
                 'attr' => ['class' => 'btn btn-primary']
