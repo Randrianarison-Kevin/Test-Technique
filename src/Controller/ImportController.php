@@ -17,6 +17,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ImportController extends AbstractController
 {
     #[Route('/', name: 'app_import')]
+
     public function index(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
     {
         $uploadFile = new UploadFile();
