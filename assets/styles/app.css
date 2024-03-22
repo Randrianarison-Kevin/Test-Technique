@@ -53,8 +53,15 @@
         text-decoration: none;
     }
 
-    /* Changement de couleur au survol */
     .navbar a:hover {
         background-color: #ddd;
         color: black;
+    }
+    .container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     }
